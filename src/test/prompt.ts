@@ -1,0 +1,2 @@
+export const DEFAULT_PROMPT =
+    "Create conventional commit messages from the following output of 'git diff --staged' command, use Markdown syntax as your answer no title, no heading, list or numbered list, each line a conventional commit message. It is important to include the scope. Follow the format: <type>(<scope>): <description>. The <type> could be feat, fix, docs, style, refactor, perf, test, or chore, and the <scope> would be a specific part of the codebase affected by the changes.";
