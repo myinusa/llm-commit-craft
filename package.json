@@ -13,7 +13,7 @@
     "git",
     "commit",
     "message",
-  ]
+  ],
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -24,10 +24,6 @@
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "llm-commit-craft.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "llm-commit-craft.logStagedChanges",
         "title": "Log Staged Changes",
