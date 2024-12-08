@@ -3,6 +3,17 @@
   "displayName": "llm-commit-craft",
   "description": "",
   "version": "0.0.1",
+  "publisher": "mythias",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myinusa/llm-commit-craft"
+  },
+  "keywords": [
+    "conventional commits",
+    "git",
+    "commit",
+    "message",
+  ]
   "engines": {
     "vscode": "^1.95.0"
   },
