@@ -2,7 +2,7 @@
   "name": "llm-commit-craft",
   "displayName": "llm-commit-craft",
   "description": "LLM Commit Craft is an extension for Visual Studio Code that allows users to generate a commit message based on staged changes in the repository.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "mythias",
   "repository": {
     "type": "git",
