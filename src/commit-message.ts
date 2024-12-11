@@ -23,7 +23,7 @@ export async function generateCommitMessage(client: any, minifiedChanges: string
     return response.choices[0].message.content ?? "";
 }
 
-export async function setCommitMessage(repo: any, commitMessage: string) {
+export function setCommitMessage(repo: any, commitMessage: string) {
     vscode.window.withProgress(
         {
             location: vscode.ProgressLocation.Notification,
@@ -42,8 +42,8 @@ export async function setCommitMessage(repo: any, commitMessage: string) {
                 }
                 progress.report({ increment: 100, message: "Commit message set successfully." });
             } catch (error: unknown) {
-                const err = error as Error;
-                vscode.window.showErrorMessage(`Failed to set commit message: ${err.message}`);
+                const error_ = error as Error;
+                vscode.window.showErrorMessage(`Failed to set commit message: ${error_.message}`);
                 console.error("Error setting commit message:", error);
             }
         }

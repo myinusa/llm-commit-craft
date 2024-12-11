@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             const minifiedChanges = await getStagedChanges(repo);
             const commitMessage = await generateCommitMessage(client, minifiedChanges);
-            await setCommitMessage(repo, commitMessage);
+            setCommitMessage(repo, commitMessage);
         } catch (error: unknown) {
             handleError(error, "Error logging staged changes");
         }

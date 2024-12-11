@@ -32,5 +32,9 @@
 		"titleBar.inactiveForeground": "#e7e7e799"
 	},
 	"peacock.color": "#5c4f5e",
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"eslint.trace.server": "off",
+	"eslint.quiet": false,
+	"eslint.debug": true,
+	"eslint.useFlatConfig": true
 }
