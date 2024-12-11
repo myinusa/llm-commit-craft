@@ -4,6 +4,19 @@ All notable changes to the "llm-commit-craft" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.0](https://github.com/myinusa/llm-commit-craft/compare/v0.0.1...v0.1.0) (2024-12-11)
+
+
+### Features
+
+* **src/settings.json:** Update TypeScript settings to include ESLint configurations ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+
+
+### Bug Fixes
+
+* **src/commit-message.ts:** Refactor setCommitMessage function to remove unnecessary parameters ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+* **src/error-handle.ts:** Fix error handling in handleError function to display correct message ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+
 ## 0.0.1 (2024-12-08)
 
 
