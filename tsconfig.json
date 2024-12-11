@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "Node16",
+		"module": "NodeNext",
 		"target": "ES2022",
 		"outDir": "out",
 		"lib": [
@@ -9,8 +9,14 @@
 		"sourceMap": true,
 		"rootDir": "src",
 		"strict": true,
+		"typeRoots": [
+			"node_modules/@types"
+		]
 	},
 	"include": [
 		"src/**/*"
+	],
+	"exclude": [
+		"node_modules"
 	]
 }
