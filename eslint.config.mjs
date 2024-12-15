@@ -71,6 +71,7 @@ export default tsESLint.config(
             ...importRules,
             "@typescript-eslint/no-unsafe-assignment": 0,
             "@typescript-eslint/no-unsafe-member-access": 0,
+            "unicorn/prevent-abbreviations": 0,
             "@typescript-eslint/no-unused-vars": "warn",
         },
     }

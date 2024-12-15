@@ -1,8 +1,9 @@
+import { API, GitExtension } from "./api/git";
 import { minifyString, showInfoMessage } from "./helper";
 import * as vscode from "vscode";
 
-export function getGitAPI() {
-    const gitExtension = vscode.extensions.getExtension("vscode.git")?.exports;
+export function getGitAPI(): API {
+    const gitExtension = vscode.extensions.getExtension("vscode.git")?.exports as GitExtension | undefined;
     if (!gitExtension) {
         throw new Error("Git extension is not available.");
     }
