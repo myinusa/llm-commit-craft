@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import { DEFAULT_PROMPT } from "./prompt";
 import OpenAI from "openai";
 import { Repository } from "./api/git";
 import { ClientConfig, getClientConfig } from "./config";
@@ -10,7 +9,7 @@ export async function generateCommitMessage(client: OpenAI, minifiedChanges: str
         messages: [
             {
                 role: "system",
-                content: DEFAULT_PROMPT,
+                content: config.prompt,
             },
             {
                 role: "user",

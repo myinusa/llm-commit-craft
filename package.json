@@ -58,6 +58,11 @@
           "type": "number",
           "default": -1,
           "description": "The seed for random number generation."
+        },
+        "llmCommitCraft.prompt": {
+          "type": "string",
+          "default": "Create conventional commit messages from the following output of 'git diff --staged' command, use Markdown syntax as your answer no title, no heading, list or numbered list, each line a conventional commit message. It is important to include the scope. Follow the format: <type>(<scope>): <description>. The <type> could be feat, fix, docs, style, refactor, perf, test, or chore, and the <scope> would be a specific part of the codebase affected by the changes.",
+          "description": "The prompt to use for generating commit messages."
         }
       }
     }

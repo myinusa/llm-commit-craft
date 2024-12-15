@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_TOKENS, LLM_SEED, LLM_BASE_URL } from "./constants";
+import { DEFAULT_PROMPT } from "./prompt";
 
 export interface ClientConfig {
     url: string;
@@ -7,6 +8,7 @@ export interface ClientConfig {
     temperature: number;
     maxTokens: number;
     seed: number;
+    prompt: string;
 }
 
 export function getClientConfig(): ClientConfig {
@@ -17,5 +19,6 @@ export function getClientConfig(): ClientConfig {
         temperature: config.get<number>("temperature", LLM_TEMPERATURE),
         maxTokens: config.get<number>("maxTokens", LLM_MAX_TOKENS),
         seed: config.get<number>("seed", LLM_SEED),
+        prompt: config.get<string>("prompt", DEFAULT_PROMPT),
     };
 }
