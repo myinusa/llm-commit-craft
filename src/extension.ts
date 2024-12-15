@@ -17,26 +17,54 @@ export function activate(context: vscode.ExtensionContext) {
                 async (progress) => {
                     progress.report({ increment: 0 });
 
+                    progress.report({ increment: 10, message: "Fetching repositories" });
+
+                    const api = getGitAPI();
+                    const repositories = api.repositories;
+                    if (repositories.length === 0) {
+                        throw new Error("No repository found.");
+                    }
+
+                    // await checkForStagedChanges(repositories);
+
+                    let repo;
+                    if (repositories.length === 1) {
+                        repo = repositories[0];
+                    } else {
+                        const repoNames = repositories.map((r, index) => `${index + 1}. ${r.rootUri.path.split("/").pop()}`);
+                        const selectedRepoName = await vscode.window.showQuickPick(repoNames, {
+                            placeHolder: "Select a repository",
+                        });
+                        if (!selectedRepoName) {
+                            throw new Error("No repository selected.");
+                        }
+                        const selectedIndex = Number.parseInt(selectedRepoName.split(".")[0], 10) - 1;
+                        repo = repositories[selectedIndex];
+                    }
+
+                    progress.report({ increment: 20, message: "Fetched repository" });
+
                     const client = new OpenAI({
                         baseURL: LLM_BASE_URL,
                         apiKey: "",
                     });
 
-                    progress.report({ increment: 20, message: "Initialized OpenAI client" });
-
-                    const api = getGitAPI();
-                    const repo = api.repositories[0];
-                    if (!repo) {
-                        throw new Error("No repository found.");
-                    }
-
-                    progress.report({ increment: 40, message: "Fetched repository" });
+                    progress.report({
+                        increment: 40,
+                        message: "Initialized OpenAI client",
+                    });
 
                     const minifiedChanges = await getStagedChanges(repo);
-                    progress.report({ increment: 60, message: "Retrieved staged changes" });
+                    progress.report({
+                        increment: 60,
+                        message: "Retrieved staged changes",
+                    });
 
                     const commitMessage = await generateCommitMessage(client, minifiedChanges);
-                    progress.report({ increment: 80, message: "Generated commit message" });
+                    progress.report({
+                        increment: 80,
+                        message: "Generated commit message",
+                    });
 
                     setCommitMessage(repo, commitMessage);
                     progress.report({ increment: 100, message: "Set commit message" });
