@@ -11,6 +11,9 @@ LLM Commit Craft is an extension for Visual Studio Code that allows users to gen
 
 ## Roadmap
 
+- [ ] Custom configuration.
+  - [ ] Token Amount.
+  - [ ] Address
 - [ ] Add support for multiple repositories.
 - [ ] Add support for custom prompts.
 - [ ] Add support for ollama.
