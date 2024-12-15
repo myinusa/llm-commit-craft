@@ -1,8 +1,10 @@
 import * as vscode from "vscode";
 import { DEFAULT_PROMPT } from "./test/prompt";
 import { LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_TOKENS, LLM_SEED } from "./constants";
+import OpenAI from "openai";
+import { Repository } from "./api/git";
 
-export async function generateCommitMessage(client: any, minifiedChanges: string) {
+export async function generateCommitMessage(client: OpenAI, minifiedChanges: string) {
     const response = await client.chat.completions.create({
         model: LLM_MODEL,
         messages: [
@@ -23,29 +25,19 @@ export async function generateCommitMessage(client: any, minifiedChanges: string
     return response.choices[0].message.content ?? "";
 }
 
-export function setCommitMessage(repo: any, commitMessage: string) {
-    vscode.window.withProgress(
-        {
-            location: vscode.ProgressLocation.Notification,
-            title: "Setting commit message...",
-            cancellable: false,
-        },
-        async (progress, token) => {
-            try {
-                await vscode.commands.executeCommand("workbench.view.scm");
-                const inputBox = repo.inputBox;
-                if (inputBox) {
-                    inputBox.value = "";
-                    inputBox.value = commitMessage;
-                } else {
-                    throw new Error("Source control input box is not available.");
-                }
-                progress.report({ increment: 100, message: "Commit message set successfully." });
-            } catch (error: unknown) {
-                const error_ = error as Error;
-                vscode.window.showErrorMessage(`Failed to set commit message: ${error_.message}`);
-                console.error("Error setting commit message:", error);
-            }
+export function setCommitMessage(repo: Repository, commitMessage: string) {
+    try {
+        vscode.commands.executeCommand("workbench.view.scm");
+        const inputBox = repo.inputBox;
+        if (inputBox) {
+            inputBox.value = "";
+            inputBox.value = commitMessage;
+        } else {
+            throw new Error("Source control input box is not available.");
         }
-    );
+    } catch (error: unknown) {
+        const error_ = error as Error;
+        vscode.window.showErrorMessage(`Failed to set commit message: ${error_.message}`);
+        console.error("Error setting commit message:", error);
+    }
 }

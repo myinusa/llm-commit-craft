@@ -8,25 +8,44 @@ import { handleError } from "./error-handle";
 export function activate(context: vscode.ExtensionContext) {
     const disposableLogStagedChanges = vscode.commands.registerCommand("llm-commit-craft.logStagedChanges", async () => {
         try {
-            const client = new OpenAI({
-                baseURL: LLM_BASE_URL,
-                apiKey: "",
-            });
+            await vscode.window.withProgress(
+                {
+                    location: vscode.ProgressLocation.Notification,
+                    title: "Logging Staged Changes",
+                    cancellable: false,
+                },
+                async (progress) => {
+                    progress.report({ increment: 0 });
 
-            const api = getGitAPI();
-            const repo = api.repositories[0];
-            if (!repo) {
-                throw new Error("No repository found.");
-            }
+                    const client = new OpenAI({
+                        baseURL: LLM_BASE_URL,
+                        apiKey: "",
+                    });
 
-            const minifiedChanges = await getStagedChanges(repo);
-            const commitMessage = await generateCommitMessage(client, minifiedChanges);
-            setCommitMessage(repo, commitMessage);
+                    progress.report({ increment: 20, message: "Initialized OpenAI client" });
+
+                    const api = getGitAPI();
+                    const repo = api.repositories[0];
+                    if (!repo) {
+                        throw new Error("No repository found.");
+                    }
+
+                    progress.report({ increment: 40, message: "Fetched repository" });
+
+                    const minifiedChanges = await getStagedChanges(repo);
+                    progress.report({ increment: 60, message: "Retrieved staged changes" });
+
+                    const commitMessage = await generateCommitMessage(client, minifiedChanges);
+                    progress.report({ increment: 80, message: "Generated commit message" });
+
+                    setCommitMessage(repo, commitMessage);
+                    progress.report({ increment: 100, message: "Set commit message" });
+                }
+            );
         } catch (error: unknown) {
             handleError(error, "Error logging staged changes");
         }
     });
-
     context.subscriptions.push(disposableLogStagedChanges);
 }
 
