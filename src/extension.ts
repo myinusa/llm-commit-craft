@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
 import OpenAI from "openai";
-import { LLM_BASE_URL } from "./constants";
 import { getGitAPI, getStagedChanges } from "./source-control";
 import { generateCommitMessage, setCommitMessage } from "./commit-message";
 import { handleError } from "./error-handle";
+import { getClientConfig } from "./config";
 
 export function activate(context: vscode.ExtensionContext) {
-    const disposableLogStagedChanges = vscode.commands.registerCommand("llm-commit-craft.logStagedChanges", async () => {
+    const disposableLogStagedChanges = vscode.commands.registerCommand("llm-commit-craft.generateCommitMessage", async () => {
         try {
             await vscode.window.withProgress(
                 {
@@ -44,8 +44,10 @@ export function activate(context: vscode.ExtensionContext) {
 
                     progress.report({ increment: 20, message: "Fetched repository" });
 
+                    const config = getClientConfig();
+
                     const client = new OpenAI({
-                        baseURL: LLM_BASE_URL,
+                        baseURL: config.url,
                         apiKey: "",
                     });
 

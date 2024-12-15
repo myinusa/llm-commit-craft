@@ -2,7 +2,7 @@
   "name": "llm-commit-craft",
   "displayName": "llm-commit-craft",
   "description": "LLM Commit Craft is an extension for Visual Studio Code that allows users to generate a commit message based on staged changes in the repository.",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "publisher": "mythias",
   "repository": {
     "type": "git",
@@ -25,11 +25,42 @@
   "contributes": {
     "commands": [
       {
-        "command": "llm-commit-craft.logStagedChanges",
-        "title": "Log Staged Changes",
+        "command": "llm-commit-craft.generateCommitMessage",
+        "title": "Generate Commit Message",
         "category": "LLM Commit Craft"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "LLM Commit Craft Configuration",
+      "properties": {
+        "llmCommitCraft.url": {
+          "type": "string",
+          "default": "http://127.0.0.1:1234/v1/",
+          "description": "The URL to use for generating commit messages."
+        },
+        "llmCommitCraft.model": {
+          "type": "string",
+          "default": "qwen2.5-coder-3b-instruct",
+          "description": "The model to use for generating commit messages."
+        },
+        "llmCommitCraft.temperature": {
+          "type": "number",
+          "default": 0.8,
+          "description": "The temperature setting for the model."
+        },
+        "llmCommitCraft.maxTokens": {
+          "type": "number",
+          "default": -1,
+          "description": "The maximum number of tokens to generate."
+        },
+        "llmCommitCraft.seed": {
+          "type": "number",
+          "default": -1,
+          "description": "The seed for random number generation."
+        }
+      }
+    }
   },
   "scripts": {
     "package": "pnpm vsce package --no-dependencies",

@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
-import { DEFAULT_PROMPT } from "./test/prompt";
-import { LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_TOKENS, LLM_SEED } from "./constants";
+import { DEFAULT_PROMPT } from "./prompt";
 import OpenAI from "openai";
 import { Repository } from "./api/git";
+import { ClientConfig, getClientConfig } from "./config";
 
-export async function generateCommitMessage(client: OpenAI, minifiedChanges: string) {
+export async function generateCommitMessage(client: OpenAI, minifiedChanges: string, config: ClientConfig = getClientConfig()) {
     const response = await client.chat.completions.create({
-        model: LLM_MODEL,
+        model: config.model,
         messages: [
             {
                 role: "system",
@@ -17,9 +17,9 @@ export async function generateCommitMessage(client: OpenAI, minifiedChanges: str
                 content: `${minifiedChanges}`,
             },
         ],
-        temperature: LLM_TEMPERATURE,
-        max_tokens: LLM_MAX_TOKENS,
-        seed: LLM_SEED,
+        temperature: config.temperature,
+        max_tokens: config.maxTokens,
+        seed: config.seed,
         stream: false,
     });
     return response.choices[0].message.content ?? "";
