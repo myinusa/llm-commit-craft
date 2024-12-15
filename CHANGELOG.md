@@ -4,6 +4,21 @@ All notable changes to the "llm-commit-craft" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.0](https://github.com/myinusa/llm-commit-craft/compare/v0.1.0...v0.2.0) (2024-12-15)
+
+
+### Features
+
+* **config.ts:** add getClientConfig function to retrieve configuration settings ([487bfa7](https://github.com/myinusa/llm-commit-craft/commit/487bfa7f384e98d24c5af4a9838b14c9a3273962))
+* **package.json:** Add `llmCommitCraft.prompt` configuration option ([7ae3d8f](https://github.com/myinusa/llm-commit-craft/commit/7ae3d8ff272e6a7c6facdcfb5f8ceceb3f8bf12d))
+* **package.json:** update version and add new configuration fields ([487bfa7](https://github.com/myinusa/llm-commit-craft/commit/487bfa7f384e98d24c5af4a9838b14c9a3273962))
+
+
+### Bug Fixes
+
+* **package.json:** Correct indentation in package.json changes ([7ae3d8f](https://github.com/myinusa/llm-commit-craft/commit/7ae3d8ff272e6a7c6facdcfb5f8ceceb3f8bf12d))
+* **src/commit-message.ts:** handle missing config in generateCommitMessage function ([487bfa7](https://github.com/myinusa/llm-commit-craft/commit/487bfa7f384e98d24c5af4a9838b14c9a3273962))
+
 ## [0.1.0](https://github.com/myinusa/llm-commit-craft/compare/v0.0.1...v0.1.0) (2024-12-15)
 
 
