@@ -4,6 +4,26 @@ All notable changes to the "llm-commit-craft" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.0](https://github.com/myinusa/llm-commit-craft/compare/v0.0.1...v0.1.0) (2024-12-15)
+
+
+### Features
+
+* add new API interface for managing Git repositories and remote sources (`src/api/git.d.ts` and `src/source-control.ts`) ([34a5809](https://github.com/myinusa/llm-commit-craft/commit/34a5809cf05267d54ce0e9d15f8f96f39ec5198a))
+* **extension:** refactor initialization to allow selecting repository ([778afe3](https://github.com/myinusa/llm-commit-craft/commit/778afe358a53f0662d67ad74396b528e7cbb567c))
+* **src/api/vscode.git.enums.ts:** Add new Git enums for force push modes and ref types ([86e957a](https://github.com/myinusa/llm-commit-craft/commit/86e957af98b4e476766d7e87dd5b78456714e50d))
+* **src/commit-message.ts:** Add OpenAI and Repository imports and update generateCommitMessage and setCommitMessage functions ([bc5cc9c](https://github.com/myinusa/llm-commit-craft/commit/bc5cc9c7acf7e95dca10520b7133b1e22d78e120))
+* **src/settings.json:** Update TypeScript settings to include ESLint configurations ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+
+
+### Bug Fixes
+
+* **extension.ts:** Improve the logStagedChanges function by using withProgress for better user experience, add error handling, and improve logging messages ([bc5cc9c](https://github.com/myinusa/llm-commit-craft/commit/bc5cc9c7acf7e95dca10520b7133b1e22d78e120))
+* **README.md:** Update roadmap with new features ([86e957a](https://github.com/myinusa/llm-commit-craft/commit/86e957af98b4e476766d7e87dd5b78456714e50d))
+* **source-control.ts:** handle the case when no staged changes are found by returning undefined ([778afe3](https://github.com/myinusa/llm-commit-craft/commit/778afe358a53f0662d67ad74396b528e7cbb567c))
+* **src/commit-message.ts:** Refactor setCommitMessage function to remove unnecessary parameters ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+* **src/error-handle.ts:** Fix error handling in handleError function to display correct message ([22aca42](https://github.com/myinusa/llm-commit-craft/commit/22aca422ea15b9fb37bc18629bbdb45a1d289018))
+
 ## 0.0.1 (2024-12-08)
 
 
